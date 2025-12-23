@@ -1,14 +1,37 @@
 console.log("Web Serverni Boshlash!");
 
 const express = require("express");
+/*❓ NIMA UCHUN EXPRESS KERAK? => bu Node.js uchun web server yaratishga yordam beradigan framework.
+  Express:
+  - Server yozishni juda oson qiladi
+  - Routing (/home, /login)
+  - Middleware
+  - JSON, form data
+  - API yaratish
+
+  ❌ Expresssiz:
+  => http.createServer(...)
+
+  ✔ Express bilan:
+  => app.get("/", ...)
+*/
+
 const app = express();
+/* app → express server instance 
+  🧑‍🍳 Oshxona misoli:
+      -> Express → oshxona qurish rejasi
+      -> express() → oshxonani ishga tushirish
+      -> app → ishlayotgan oshxona
+      -> app.get() → menyuga ovqat qo‘shish
+*/
+
 const http = require("http");
 
 /* 1: Kirish code
-    1-boqichda expressga kirib kelayotgan malumotlarga bo'liq bolgan codelar yoziladi
+    1-boqichda expressga kirib kelayotgan malumotlarga bog'liq bolgan codelar yoziladi
 */
 
-// // bu har qanday broqserdan kelyotgan request uchun faqat public folderni (ochiq) koroladi degani
+// // bu har qanday browserdan kelyotgan request uchun faqat public folderni (ochiq) koroladi degani
 app.use(express.static("public"));
 
 // // bu kirib kelayotgan json formatdagi datani object holatiga o'girib beradi, {client va webserverlar orasidagi data json formatda}
@@ -29,22 +52,13 @@ app.set("views", "views");
 app.set("view engine", "ejs");
 
 // 4 Routing code
+app.post("/create-item", (req, res) => {
+  console.log(req.body);
+  res.json({ test: "success" });
+});
+
 app.get("/", function (req, res) {
-  res.end(`<h1>Hello World!</h1>`);
-});
-
-app.get("/hello", function (req, res) {
-  res.end(`<h1 style = "background: red" >Hello World!</h1>`);
-});
-
-app.get("/gift", function (req, res) {
-  res.end(`<h1 style = "background: orange" >You are in GIFTS page!</h1>`);
-});
-
-app.get("/mit35", function (req, res) {
-  res.end(
-    `<a style = "font-size: 35px" href = "https://www.devexacademy.com/result/35">Check MIT35 acceptance list</a>`
-  );
+  res.render("harid");
 });
 
 // 1-ta parametr qabul qiladi

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "train": "nodemon train.js",
+    "func": "nodemon dars21_22.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jacob",

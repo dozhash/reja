@@ -10,10 +10,9 @@ async function startServer() {
   try {
     await client.connect();
     console.log("MongoDB connection succeeded");
-    module.exports = client;
 
-    // OPTIONAL: select database
-    const db = client.db("yourDatabaseName");
+    const db = client.db("Reja");
+    global.db = db;
 
     const app = require("./app");
     const server = http.createServer(app);

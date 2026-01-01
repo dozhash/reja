@@ -126,7 +126,7 @@ async function maslahatBering(age, callback) {
   else {
     setInterval(function () {
       callback(null, list[5]);
-    }, 5000);
+    }, 1000);
   }
 }
 maslahatBering(65, (err, data) => {

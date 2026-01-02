@@ -14,22 +14,25 @@ app.set("view engine", "ejs");
 // routes
 app.post("/create-item", async (req, res) => {
   try {
-    console.log("User entered /create-item page");
+    const new_reja = req.body.reja;
 
     const result = await global.db.collection("plans").insertOne({
-      reja: req.body.reja,
+      reja: new_reja,
     });
-    res.end("Successfully added");
+
+    // send the newly created item back to frontend
+    res.json({
+      _id: result.insertedId,
+      reja: new_reja,
+    });
   } catch (err) {
-    console.error("Insert error:", err);
-    res.status(500).send("Something went wrong");
+    console.error(err);
+    res.status(500).send("Insert failed");
   }
 });
 
 app.get("/", async (req, res) => {
   try {
-    console.log("User entered / page");
-
     const data = await global.db.collection("plans").find().toArray();
     // console.log("Data from the backend:", data);
     res.render("reja", { items: data });

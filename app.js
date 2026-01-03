@@ -7,6 +7,9 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// mongoDB
+const mongodb = require("mongodb");
+
 // views
 app.set("views", "views");
 app.set("view engine", "ejs");
@@ -31,10 +34,24 @@ app.post("/create-item", async (req, res) => {
   }
 });
 
+app.post("/delete-item", async (req, res) => {
+  try {
+    const id = req.body.id;
+    await global.db
+      .collection("plans")
+      .deleteOne({ _id: new mongodb.ObjectId(id) });
+
+    // deleting
+    res.json({ state: "succes" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Something went wrong!");
+  }
+});
+
 app.get("/", async (req, res) => {
   try {
     const data = await global.db.collection("plans").find().toArray();
-    // console.log("Data from the backend:", data);
     res.render("reja", { items: data });
   } catch (err) {
     console.error(err);

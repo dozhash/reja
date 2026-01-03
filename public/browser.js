@@ -23,6 +23,12 @@ let createField = document.getElementById("create-field");
 document.getElementById("create-form").addEventListener("submit", function (e) {
   e.preventDefault();
 
+  if (createField.value.trim() === "") {
+    alert("Please enter a value");
+    createField.focus();
+    return;
+  }
+
   axios
     .post("/create-item", { reja: createField.value })
     .then((response) => {
@@ -33,6 +39,28 @@ document.getElementById("create-form").addEventListener("submit", function (e) {
       createField.focus();
     })
     .catch((err) => {
-      console.log("Try again");
+      console.log("Please try again");
     });
+});
+
+document.addEventListener("click", function (e) {
+  // delete oper
+  if (e.target.classList.contains("delete-me")) {
+    if (confirm("Aniq o'chirmoqchimisiz?")) {
+      axios
+        .post("/delete-item", { id: e.target.getAttribute("data-id") })
+        .then((response) => {
+          console.log(response.data);
+          e.target.parentElement.parentElement.remove();
+        })
+        .catch((err) => {
+          console.log("Please try again");
+        });
+    }
+  }
+
+  // edit oper
+  if (e.target.classList.contains("edit-me")) {
+    alert("Siz edit tugmasini bosdingiz");
+  }
 });

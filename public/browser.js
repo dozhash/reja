@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 console.log("FrontEnd JS ishga tushdi");
 
 function itemTemplate(item) {
@@ -61,6 +63,36 @@ document.addEventListener("click", function (e) {
 
   // edit oper
   if (e.target.classList.contains("edit-me")) {
-    alert("Siz edit tugmasini bosdingiz");
+    let currentText =
+      e.target.parentElement.parentElement.querySelector(
+        ".item-text"
+      ).innerHTML;
+    let userInput = prompt("Ozgartirish kiriting", currentText);
+
+    if (userInput) {
+      axios
+        .post("/edit-item", {
+          id: e.target.getAttribute("data-id"),
+          new_input: userInput,
+        })
+        .then((response) => {
+          console.log(response.data);
+          e.target.parentElement.parentElement.querySelector(
+            ".item-text"
+          ).innerHTML = userInput;
+        })
+        .catch((err) => {
+          console.log("Please try again");
+        });
+    }
+  }
+});
+
+document.getElementById("clean-all").addEventListener("click", function () {
+  if (confirm("Hammasini o'chirasizmi?")) {
+    axios.post("/delete-all", { delete_all: true }).then((response) => {
+      // alert(response.data.state);
+      document.location.reload();
+    });
   }
 });

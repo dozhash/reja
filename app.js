@@ -42,7 +42,37 @@ app.post("/delete-item", async (req, res) => {
       .deleteOne({ _id: new mongodb.ObjectId(id) });
 
     // deleting
-    res.json({ state: "succes" });
+    res.json({ state: "delete succes" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Something went wrong!");
+  }
+});
+
+app.post("/edit-item", async (req, res) => {
+  try {
+    const data = req.body;
+    // console.log(data);
+    await global.db
+      .collection("plans")
+      .findOneAndUpdate(
+        { _id: new mongodb.ObjectId(data.id) },
+        { $set: { reja: data.new_input } }
+      );
+
+    res.json({ state: "edit success" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Something went wrong!");
+  }
+});
+
+app.post("/delete-all", async (req, res) => {
+  try {
+    if (req.body.delete_all) {
+      await global.db.collection("plans").deleteMany({});
+      res.json({ state: "Hamma rejalar o'chirildi" });
+    }
   } catch (err) {
     console.error(err);
     res.status(500).send("Something went wrong!");

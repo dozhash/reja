@@ -47,7 +47,7 @@ class Shop {
 
 const shop = new Shop(4, 5, 2);
 shop.qoldiq();
-shop.sotish("lagmon", 3);
+shop.sotish("langmon", 1);
 shop.qabul("cola", 4);
 shop.qoldiq();
 

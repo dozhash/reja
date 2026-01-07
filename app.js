@@ -35,11 +35,19 @@ app.post("/create-item", async (req, res) => {
 });
 
 app.post("/delete-item", async (req, res) => {
+  console.log("STEP2: FRONTENDDAN > BACKEND SERVERGAGA REQUIST KETTI!");
+
   try {
     const id = req.body.id;
+    console.log("STEP3: BACKEND SERVERDAN > DATA BASEGA REQUIST KETTI!");
+
     await global.db
       .collection("plans")
       .deleteOne({ _id: new mongodb.ObjectId(id) });
+
+    console.log("STEP4: DATA BASEDAN > BACKEND SERVERGA MALUMOT CHIQIB KETTI!");
+
+    console.log("STEP5: BACKEND SERVERAN > FRONTENDGA MALUMOT CHIQIB KETTI!");
 
     // deleting
     res.json({ state: "delete succes" });

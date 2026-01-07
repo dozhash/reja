@@ -5,7 +5,7 @@ console.log("FrontEnd JS ishga tushdi");
 function itemTemplate(item) {
   return `<li
           class="list-group-item list-group-item-info d-flex align-items-center justify-content-between">
-          <span class="iten-text">${item.reja}</span>
+          <span class="item-text">${item.reja}</span>
           <div>
             <button
               data-id="${item._id}"
@@ -48,11 +48,17 @@ document.getElementById("create-form").addEventListener("submit", function (e) {
 document.addEventListener("click", function (e) {
   // delete oper
   if (e.target.classList.contains("delete-me")) {
+    console.log("Kutayabmiz...");
+
     if (confirm("Aniq o'chirmoqchimisiz?")) {
+      console.log("STEP1: FRONTENDDAN BACKEND SERVERGA REQUIST KETTI!");
+
       axios
         .post("/delete-item", { id: e.target.getAttribute("data-id") })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
+          console.log("NIMADIR QILISH...");
+
           e.target.parentElement.parentElement.remove();
         })
         .catch((err) => {

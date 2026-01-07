@@ -11,7 +11,7 @@ async function startServer() {
     await client.connect();
     console.log("MongoDB connection succeeded");
 
-    const db = client.db("Reja");
+    const db = client.db("Reja"); // client.db() -> QALAM
     global.db = db;
 
     const app = require("./app");

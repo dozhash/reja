@@ -1,5 +1,26 @@
 console.log("---------> Welcome to the Training Page! <---------");
 
+/* E-TASK
+    Shunday function tuzing, u bitta string argumentni qabul qilib osha stringni teskari qilib return qilsin. 
+    MASALAN: getReverse("hello") return qilsin "olleh".
+*/
+
+function getReverse(stringValue) {
+  let arrayedVals = [];
+  for (let i = 0; i < stringValue.length; i++) {
+    arrayedVals.push(stringValue[i]);
+  }
+
+  return arrayedVals.reverse().join("");
+
+  // // 2nd solution:
+  // const reversed = stringValue.split("").reverse().join("");
+  // return reversed;
+}
+
+const reversedValue = getReverse("hello");
+console.log("Reversed Value:", reversedValue);
+
 /* D-TASK
     Shunday class tuzing tuzing nomi Shop, va uni constructoriga 3 hil mahsulot pass bolsin, 
     hamda classning 3ta methodi bolsin, biri qoldiq, biri sotish va biri qabul. Har bir method ishga tushgan vaqt ham log qilinsin. 
@@ -7,49 +28,49 @@ console.log("---------> Welcome to the Training Page! <---------");
     shop.sotish('non', 3) & shop.qabul('cola', 4) & shop.qoldiq() return hozir 20:50da 1ta non, 5ta lagmon va 6ta cola mavjud!
 */
 
-const moment = require("moment");
+// const moment = require("moment");
 
-class Shop {
-  constructor(non, lagmon, cola) {
-    this.non = non;
-    this.lagmon = lagmon;
-    this.cola = cola;
-  }
+// class Shop {
+//   constructor(non, lagmon, cola) {
+//     this.non = non;
+//     this.lagmon = lagmon;
+//     this.cola = cola;
+//   }
 
-  vaqt() {
-    return moment().format("HH:mm");
-  }
+//   vaqt() {
+//     return moment().format("HH:mm");
+//   }
 
-  qoldiq() {
-    console.log(
-      `Hozir ${this.vaqt()}da ${this.non} ta non, ${this.lagmon}ta lagmon va ${
-        this.cola
-      }ta cole mavjud!`
-    );
-  }
+//   qoldiq() {
+//     console.log(
+//       `Hozir ${this.vaqt()}da ${this.non} ta non, ${this.lagmon}ta lagmon va ${
+//         this.cola
+//       }ta cole mavjud!`
+//     );
+//   }
 
-  sotish(product, quantity) {
-    if (this[product] >= quantity) {
-      this[product] -= quantity;
-      console.log(`Hozir ${this.vaqt()}da ${quantity}ta ${product} sotildi`);
-    } else {
-      console.log(`Hozir ${this.vaqt()}da ${product} yetarli emas`);
-    }
-  }
+//   sotish(product, quantity) {
+//     if (this[product] >= quantity) {
+//       this[product] -= quantity;
+//       console.log(`Hozir ${this.vaqt()}da ${quantity}ta ${product} sotildi`);
+//     } else {
+//       console.log(`Hozir ${this.vaqt()}da ${product} yetarli emas`);
+//     }
+//   }
 
-  qabul(product, quantity) {
-    this[product] += quantity;
-    console.log(
-      `Hozir ${this.vaqt()}da ${quantity}ta ${product} qabul qilindi`
-    );
-  }
-}
+//   qabul(product, quantity) {
+//     this[product] += quantity;
+//     console.log(
+//       `Hozir ${this.vaqt()}da ${quantity}ta ${product} qabul qilindi`
+//     );
+//   }
+// }
 
-const shop = new Shop(4, 5, 2);
-shop.qoldiq();
-shop.sotish("langmon", 1);
-shop.qabul("cola", 4);
-shop.qoldiq();
+// const shop = new Shop(4, 5, 2);
+// shop.qoldiq();
+// shop.sotish("langmon", 1);
+// shop.qabul("cola", 4);
+// shop.qoldiq();
 
 // // // ------------------------------------------------> C TASK <------------------------------------------------
 /* C-TASK

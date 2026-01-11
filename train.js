@@ -1,25 +1,46 @@
 console.log("---------> Welcome to the Training Page! <---------");
 
+/* F-TASK
+    Shunday findDoublers function tuzing, unga faqat bitta string argument pass bolib, 
+    agar stringda bir hil harf qatnashgan bolsa true, qatnashmasa false qaytarishi kerak. 
+    MASALAN: getReverse("hello") return true return qiladi.
+*/
+
+function findDoublers(str) {
+  for (let i = 0; i < str.length; i++) {
+    for (let j = i + 1; j < str.length; j++) {
+      if (str[i].toLowerCase() === str[j].toLowerCase()) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+console.log(findDoublers("David"));
+console.log(findDoublers("hello"));
+console.log(findDoublers("world"));
+
 /* E-TASK
     Shunday function tuzing, u bitta string argumentni qabul qilib osha stringni teskari qilib return qilsin. 
     MASALAN: getReverse("hello") return qilsin "olleh".
 */
 
-function getReverse(stringValue) {
-  let arrayedVals = [];
-  for (let i = 0; i < stringValue.length; i++) {
-    arrayedVals.push(stringValue[i]);
-  }
+// function getReverse(stringValue) {
+//   let arrayedVals = [];
+//   for (let i = 0; i < stringValue.length; i++) {
+//     arrayedVals.push(stringValue[i]);
+//   }
 
-  return arrayedVals.reverse().join("");
+//   return arrayedVals.reverse().join("");
 
-  // // 2nd solution:
-  // const reversed = stringValue.split("").reverse().join("");
-  // return reversed;
-}
+//   // // 2nd solution:
+//   // const reversed = stringValue.split("").reverse().join("");
+//   // return reversed;
+// }
 
-const reversedValue = getReverse("hello");
-console.log("Reversed Value:", reversedValue);
+// const reversedValue = getReverse("hello");
+// console.log("Reversed Value:", reversedValue);
 
 /* D-TASK
     Shunday class tuzing tuzing nomi Shop, va uni constructoriga 3 hil mahsulot pass bolsin, 
